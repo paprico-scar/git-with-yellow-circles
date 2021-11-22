@@ -1,18 +1,18 @@
 import sys
-
+from random import randrange
 from PyQt5 import uic
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
-class Example(QWidget):
+class Example(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.do_paint = False
         self.initUI()
 
     def initUI(self):
         uic.loadUi('UI.ui', self)
-        self.do_paint = False
         self.btn.clicked.connect(self.paint)
 
     def paintEvent(self, event):
@@ -28,7 +28,7 @@ class Example(QWidget):
 
     def draw_flag(self, qp):
         qp.setBrush(QColor('yellow'))
-        qp.drawEllipse(350, 260, 120, 120)
+        qp.drawEllipse(350, 260, randrange(200), randrange(200))
 
 
 if __name__ == '__main__':
